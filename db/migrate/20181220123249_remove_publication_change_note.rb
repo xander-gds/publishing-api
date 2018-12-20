@@ -18,6 +18,7 @@ class RemovePublicationChangeNote < ActiveRecord::Migration[5.1]
 
       editions_with_change_notes = change_notes.map(&:edition_id)
 
+      # Remove change history
       editions_with_change_notes.each do |edition_id|
         edition = Edition.find(edition_id)
         edition_details = edition.details
