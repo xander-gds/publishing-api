@@ -11,7 +11,7 @@ class RemovePublicationChangeNote < ActiveRecord::Migration[5.1]
       editions = document.editions
       change_notes = editions.map(&:change_note).compact
 
-      change_notes.select!{ |change_note| change_note.note == "Updated information will be provided in January 2019."}
+      change_notes.select!{ |change_note| change_note.note == "Updated information will be provided in January 2019. "}
 
       # Get rid of change notes
       change_notes.map(&:destroy)
