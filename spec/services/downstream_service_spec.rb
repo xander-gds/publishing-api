@@ -32,12 +32,12 @@ RSpec.describe DownstreamService do
       let(:content_store_action) { :put }
 
       it "puts content to the live content store" do
-        expect(Adapters::ContentStore).to receive(:put_content_item)
+        expect(ContentStoreAdapter).to receive(:put_content_item)
         DownstreamService.update_live_content_store(downstream_payload)
       end
 
       it "doesn't send to draft content store" do
-        expect(Adapters::DraftContentStore).to_not receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:put_content_item)
         DownstreamService.update_live_content_store(downstream_payload)
       end
     end
@@ -46,12 +46,12 @@ RSpec.describe DownstreamService do
       let(:content_store_action) { :delete }
 
       it "deletes content from the live content store" do
-        expect(Adapters::ContentStore).to receive(:delete_content_item)
+        expect(ContentStoreAdapter).to receive(:delete_content_item)
         DownstreamService.update_live_content_store(downstream_payload)
       end
 
       it "doesn't put to live content store" do
-        expect(Adapters::ContentStore).to_not receive(:put_content_item)
+        expect(ContentStoreAdapter).to_not receive(:put_content_item)
         DownstreamService.update_live_content_store(downstream_payload)
       end
     end
@@ -60,14 +60,14 @@ RSpec.describe DownstreamService do
       let(:content_store_action) { :no_op }
 
       it "doesn't delete from either content store" do
-        expect(Adapters::ContentStore).to_not receive(:put_content_item)
-        expect(Adapters::DraftContentStore).to_not receive(:put_content_item)
+        expect(ContentStoreAdapter).to_not receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:put_content_item)
         DownstreamService.update_live_content_store(downstream_payload)
       end
 
       it "doesn't put content to either content store" do
-        expect(Adapters::ContentStore).to_not receive(:delete_content_item)
-        expect(Adapters::DraftContentStore).to_not receive(:delete_content_item)
+        expect(ContentStoreAdapter).to_not receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:delete_content_item)
         DownstreamService.update_live_content_store(downstream_payload)
       end
     end
@@ -136,12 +136,12 @@ RSpec.describe DownstreamService do
       let(:content_store_action) { :put }
 
       it "puts content to the draft content store" do
-        expect(Adapters::DraftContentStore).to receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to receive(:put_content_item)
         DownstreamService.update_draft_content_store(downstream_payload)
       end
 
       it "doesn't send to live content store" do
-        expect(Adapters::ContentStore).to_not receive(:put_content_item)
+        expect(ContentStoreAdapter).to_not receive(:put_content_item)
         DownstreamService.update_draft_content_store(downstream_payload)
       end
     end
@@ -150,12 +150,12 @@ RSpec.describe DownstreamService do
       let(:content_store_action) { :delete }
 
       it "deletes content from the draft content store" do
-        expect(Adapters::DraftContentStore).to receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to receive(:delete_content_item)
         DownstreamService.update_draft_content_store(downstream_payload)
       end
 
       it "doesn't put to draft content store" do
-        expect(Adapters::DraftContentStore).to_not receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:put_content_item)
         DownstreamService.update_draft_content_store(downstream_payload)
       end
     end
@@ -164,14 +164,14 @@ RSpec.describe DownstreamService do
       let(:content_store_action) { :no_op }
 
       it "doesn't delete from either content store" do
-        expect(Adapters::ContentStore).to_not receive(:put_content_item)
-        expect(Adapters::DraftContentStore).to_not receive(:put_content_item)
+        expect(ContentStoreAdapter).to_not receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:put_content_item)
         DownstreamService.update_draft_content_store(downstream_payload)
       end
 
       it "doesn't put content to either content store" do
-        expect(Adapters::ContentStore).to_not receive(:delete_content_item)
-        expect(Adapters::DraftContentStore).to_not receive(:delete_content_item)
+        expect(ContentStoreAdapter).to_not receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:delete_content_item)
         DownstreamService.update_draft_content_store(downstream_payload)
       end
     end
@@ -215,7 +215,7 @@ RSpec.describe DownstreamService do
   describe ".discard_from_draft_content_store" do
     context "nil base path" do
       it "doesn't delete from draft content store" do
-        expect(Adapters::DraftContentStore).to_not receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:delete_content_item)
         DownstreamService.discard_from_draft_content_store(nil)
       end
     end
@@ -235,7 +235,7 @@ RSpec.describe DownstreamService do
 
     context "doesn't have a base path conflict" do
       it "deletes from draft content store" do
-        expect(Adapters::DraftContentStore).to receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to receive(:delete_content_item)
         DownstreamService.discard_from_draft_content_store("/test")
       end
     end

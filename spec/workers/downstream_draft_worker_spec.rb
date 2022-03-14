@@ -42,13 +42,13 @@ RSpec.describe DownstreamDraftWorker do
   describe "sends to draft content store" do
     context "edition has a base path" do
       it "sends put content to draft content store" do
-        expect(Adapters::DraftContentStore).to receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to receive(:put_content_item)
         subject.perform(arguments)
       end
 
       it "receives the base path" do
         base_path = Edition.where(id: edition.id).pick(:base_path)
-        expect(Adapters::DraftContentStore).to receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to receive(:put_content_item)
           .with(base_path, anything)
         subject.perform(arguments)
       end
@@ -63,7 +63,7 @@ RSpec.describe DownstreamDraftWorker do
           schema_name: "contact",
         )
 
-        expect(Adapters::DraftContentStore).to_not receive(:put_content_item)
+        expect(DraftContentStoreAdapter).to_not receive(:put_content_item)
         subject.perform(arguments.merge("content_id" => pathless.document.content_id))
       end
     end

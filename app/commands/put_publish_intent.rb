@@ -5,7 +5,7 @@ module Commands
 
       if downstream
         payload = publish_intent
-        Adapters::ContentStore.put_publish_intent(base_path, payload)
+        ContentStoreAdapter.put_publish_intent(base_path, payload)
       end
 
       Success.new(payload)

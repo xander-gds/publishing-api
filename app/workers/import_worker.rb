@@ -13,7 +13,7 @@ class ImportWorker
 
     live_base_path_to_delete = args["live_base_path_to_delete"]
     if live_base_path_to_delete.present?
-      Adapters::ContentStore.delete_content_item(live_base_path_to_delete)
+      ContentStoreAdapter.delete_content_item(live_base_path_to_delete)
     end
   end
 end

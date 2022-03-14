@@ -83,13 +83,13 @@ RSpec.describe DownstreamDiscardDraftWorker do
     end
 
     it "adds the live edition to the draft content store" do
-      expect(Adapters::DraftContentStore).to receive(:put_content_item)
+      expect(DraftContentStoreAdapter).to receive(:put_content_item)
         .with(base_path, a_hash_including(title: live_edition.title))
       subject.perform(live_content_item_arguments)
     end
 
     it "doesn't delete from the draft content store" do
-      expect(Adapters::DraftContentStore).to_not receive(:delete_content_item)
+      expect(DraftContentStoreAdapter).to_not receive(:delete_content_item)
       subject.perform(live_content_item_arguments)
     end
   end
@@ -108,13 +108,13 @@ RSpec.describe DownstreamDiscardDraftWorker do
     end
 
     it "adds the live edition to the draft content store" do
-      expect(Adapters::DraftContentStore).to receive(:put_content_item)
+      expect(DraftContentStoreAdapter).to receive(:put_content_item)
         .with("/bar", a_hash_including(title: live_edition.title))
       subject.perform(live_content_item_arguments)
     end
 
     it "deletes from the draft content store" do
-      expect(Adapters::DraftContentStore).to receive(:delete_content_item)
+      expect(DraftContentStoreAdapter).to receive(:delete_content_item)
         .with(base_path)
       subject.perform(live_content_item_arguments)
     end
@@ -122,12 +122,12 @@ RSpec.describe DownstreamDiscardDraftWorker do
 
   context "doesn't have a live edition" do
     it "doesn't add to live draft content store" do
-      expect(Adapters::DraftContentStore).to_not receive(:put_content_item)
+      expect(DraftContentStoreAdapter).to_not receive(:put_content_item)
       subject.perform(arguments)
     end
 
     it "deletes from the draft content store" do
-      expect(Adapters::DraftContentStore).to receive(:delete_content_item)
+      expect(DraftContentStoreAdapter).to receive(:delete_content_item)
         .with(base_path)
       subject.perform(arguments)
     end
@@ -136,12 +136,12 @@ RSpec.describe DownstreamDiscardDraftWorker do
   describe "deletes from draft content store" do
     context "can send to content store" do
       it "sends delete content to draft content store" do
-        expect(Adapters::DraftContentStore).to receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to receive(:delete_content_item)
         subject.perform(arguments)
       end
 
       it "receives the base path" do
-        expect(Adapters::DraftContentStore).to receive(:delete_content_item)
+        expect(DraftContentStoreAdapter).to receive(:delete_content_item)
           .with(base_path)
         subject.perform(arguments)
       end
@@ -154,7 +154,7 @@ RSpec.describe DownstreamDiscardDraftWorker do
         document_type: "contact",
         schema_name: "contact",
       )
-      expect(Adapters::DraftContentStore).to_not receive(:delete_content_item)
+      expect(DraftContentStoreAdapter).to_not receive(:delete_content_item)
       subject.perform(
         arguments.merge("content_id" => pathless.document.content_id, "base_path" => nil),
       )
@@ -228,7 +228,7 @@ RSpec.describe DownstreamDiscardDraftWorker do
     end
 
     it "doesn't delete edition from content store" do
-      expect(Adapters::DraftContentStore).to_not receive(:delete_content_item)
+      expect(DraftContentStoreAdapter).to_not receive(:delete_content_item)
       subject.perform(arguments)
     end
 

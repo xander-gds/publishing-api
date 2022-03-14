@@ -5,7 +5,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
   let(:locale) { "en" }
   let(:document) { create(:document, content_id: content_id, locale: locale) }
   let(:live_edition) { create(:live_edition, document: document) }
-  let(:content_store) { "Adapters::ContentStore" }
+  let(:content_store) { "ContentStoreAdapter" }
   let(:orphaned_link_content_ids) { [] }
 
   subject(:worker_perform) do
@@ -53,7 +53,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
 
   context "when orphaned content ids are present" do
     let(:orphaned_link_content_ids) { [create(:edition).content_id] }
-    let(:content_store) { "Adapters::DraftContentStore" }
+    let(:content_store) { "DraftContentStoreAdapter" }
 
     after do
       worker_perform
@@ -82,7 +82,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
     end
 
     context "and the orphaned links belong to different content stores" do
-      let(:content_store) { "Adapters::ContentStore" }
+      let(:content_store) { "ContentStoreAdapter" }
 
       it "doesn't send content ids downstream" do
         expect(DownstreamDraftWorker).to_not receive(:perform_async_in_queue).with(
@@ -125,7 +125,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
       described_class.new.perform(
         content_id: "123",
         locale: "en",
-        content_store: "Adapters::ContentStore",
+        content_store: "ContentStoreAdapter",
       )
     end
 
@@ -141,7 +141,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
       described_class.new.perform(
         content_id: "123",
         locale: "en",
-        content_store: "Adapters::DraftContentStore",
+        content_store: "DraftContentStoreAdapter",
       )
     end
   end
@@ -159,7 +159,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
         described_class.new.perform(
           content_id: content_id,
           locale: "en",
-          content_store: "Adapters::ContentStore",
+          content_store: "ContentStoreAdapter",
         )
       end
 
@@ -187,7 +187,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
       after do
         described_class.new.perform(
           content_id: content_id,
-          content_store: "Adapters::ContentStore",
+          content_store: "ContentStoreAdapter",
           locale: "en",
         )
       end
@@ -213,7 +213,7 @@ RSpec.describe DependencyResolutionWorker, :perform do
     after do
       described_class.new.perform(
         content_id: content_id,
-        content_store: "Adapters::ContentStore",
+        content_store: "ContentStoreAdapter",
         locale: "en",
         source_command: "patch_link_set",
         source_document_type: "answer",

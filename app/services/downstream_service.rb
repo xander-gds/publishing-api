@@ -7,9 +7,9 @@ module DownstreamService
 
     case downstream_payload.content_store_action
     when :put
-      Adapters::ContentStore.put_content_item(downstream_payload.base_path, downstream_payload.content_store_payload)
+      ContentStoreAdapter.put_content_item(downstream_payload.base_path, downstream_payload.content_store_payload)
     when :delete
-      Adapters::ContentStore.delete_content_item(downstream_payload.base_path)
+      ContentStoreAdapter.delete_content_item(downstream_payload.base_path)
     end
   end
 
@@ -25,9 +25,9 @@ module DownstreamService
 
     case downstream_payload.content_store_action
     when :put
-      Adapters::DraftContentStore.put_content_item(downstream_payload.base_path, downstream_payload.content_store_payload)
+      DraftContentStoreAdapter.put_content_item(downstream_payload.base_path, downstream_payload.content_store_payload)
     when :delete
-      Adapters::DraftContentStore.delete_content_item(downstream_payload.base_path)
+      DraftContentStoreAdapter.delete_content_item(downstream_payload.base_path)
     end
   end
 
@@ -47,7 +47,7 @@ module DownstreamService
       message = "Cannot discard '#{base_path}' as there is an item occupying that base path"
       raise DiscardDraftBasePathConflictError, message
     end
-    Adapters::DraftContentStore.delete_content_item(base_path)
+    DraftContentStoreAdapter.delete_content_item(base_path)
   end
 
   def self.draft_at_base_path?(base_path)

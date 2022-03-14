@@ -76,7 +76,7 @@ private
   end
 
   def draft?
-    content_store == Adapters::DraftContentStore
+    content_store == DraftContentStoreAdapter
   end
 
   def downstream_draft(dependent_content_id, locale)

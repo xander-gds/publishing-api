@@ -50,7 +50,7 @@ RSpec.describe DownstreamLiveWorker do
   describe "send to live content store" do
     context "published edition" do
       it "sends content to live content store" do
-        expect(Adapters::ContentStore).to receive(:put_content_item)
+        expect(ContentStoreAdapter).to receive(:put_content_item)
         subject.perform(arguments)
       end
     end
@@ -60,7 +60,7 @@ RSpec.describe DownstreamLiveWorker do
       let(:unpublished_arguments) { arguments.merge(content_id: unpublished_edition.document.content_id) }
 
       it "sends content to live content store" do
-        expect(Adapters::ContentStore).to receive(:put_content_item)
+        expect(ContentStoreAdapter).to receive(:put_content_item)
         subject.perform(unpublished_arguments)
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe DownstreamLiveWorker do
       let(:superseded_arguments) { arguments.merge(content_id: superseded_edition.document.content_id) }
 
       it "doesn't send to live content store" do
-        expect(Adapters::ContentStore).to_not receive(:put_content_item)
+        expect(ContentStoreAdapter).to_not receive(:put_content_item)
         subject.perform(superseded_arguments)
       end
 
@@ -88,7 +88,7 @@ RSpec.describe DownstreamLiveWorker do
         document_type: "contact",
         schema_name: "contact",
       )
-      expect(Adapters::ContentStore).to_not receive(:put_content_item)
+      expect(ContentStoreAdapter).to_not receive(:put_content_item)
       subject.perform(arguments.merge("content_id" => pathless.document.content_id))
     end
   end
