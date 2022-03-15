@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::Queries::AvailableTranslations do
+RSpec.describe Queries::AvailableTranslations do
   subject(:translations) do
     described_class
       .by_content_id(content_id, with_drafts: with_drafts)

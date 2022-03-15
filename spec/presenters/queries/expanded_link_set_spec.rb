@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::Queries::ExpandedLinkSet do
+RSpec.describe Queries::ExpandedLinkSet do
   include DependencyResolutionHelper
 
   let(:a) { create_link_set }

@@ -19,7 +19,7 @@ private
     link_set = link_sets[content_id]
     return { links: {}, version: 0 } unless link_set
 
-    Presenters::Queries::LinkSetPresenter
+    Queries::LinkSetPresenter
       .present(link_set)
       .slice(:links, :version)
   end

@@ -21,7 +21,7 @@ RSpec.describe V2::DiscardDraftCommand do
     let(:payload) { { content_id: document.content_id } }
 
     before do
-      allow_any_instance_of(Presenters::EditionPresenter)
+      allow_any_instance_of(EditionPresenter)
         .to receive(:for_content_store)
         .and_return(expected_content_store_payload)
     end

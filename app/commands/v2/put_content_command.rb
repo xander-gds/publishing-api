@@ -106,7 +106,7 @@ module V2
     end
 
     def present_response(edition)
-      Presenters::ContentItemPresenterQuery.present(
+      Queries::ContentItemPresenter.present(
         edition,
         include_warnings: true,
       )

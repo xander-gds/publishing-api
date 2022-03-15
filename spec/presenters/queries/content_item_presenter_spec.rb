@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::Queries::ContentItemPresenter do
+RSpec.describe Queries::ContentItemPresenter do
   let(:content_id) { SecureRandom.uuid }
   let(:base_path) { "/vat-rates" }
   let(:first_published_at) { "2014-01-02T03:04:05Z" }

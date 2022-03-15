@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::EditionPresenter do
+RSpec.describe EditionPresenter do
   let(:present_drafts) { false }
   let(:change_history) { { note: "Note", public_timestamp: 1.day.ago.to_s } }
   let(:details) { { body: "<p>Text</p>\n", change_history: [change_history] } }

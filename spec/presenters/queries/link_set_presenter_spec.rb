@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::Queries::LinkSetPresenter do
+RSpec.describe Queries::LinkSetPresenter do
   describe ".present" do
     let(:content_id) { SecureRandom.uuid }
     let(:link_set) do
@@ -8,7 +8,7 @@ RSpec.describe Presenters::Queries::LinkSetPresenter do
     end
 
     subject(:result) do
-      Presenters::Queries::LinkSetPresenter.present(link_set)
+      Queries::LinkSetPresenter.present(link_set)
     end
 
     it "returns link set attributes as a hash" do
@@ -23,7 +23,7 @@ RSpec.describe Presenters::Queries::LinkSetPresenter do
   context "#links" do
     describe "returns the links as a hash, grouping them by their link_type" do
       let(:link_set) { create(:link_set) }
-      let(:links) { Presenters::Queries::LinkSetPresenter.new(link_set).links }
+      let(:links) { Queries::LinkSetPresenter.new(link_set).links }
 
       it "returns and empty hash when no links are present" do
         expect(links).to eq({})

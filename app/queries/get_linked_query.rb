@@ -76,6 +76,6 @@ private
   end
 
   def presenter
-    Presenters::Queries::ContentItemPresenter
+    Queries::ContentItemPresenter
   end
 end

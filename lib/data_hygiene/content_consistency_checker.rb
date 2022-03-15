@@ -105,7 +105,7 @@ module DataHygiene
           end
         end
 
-        edition_presenter = Presenters::EditionPresenter.new(edition, draft: draft?)
+        edition_presenter = EditionPresenter.new(edition, draft: draft?)
 
         hash_fields = %i[routes redirects]
         hash_fields.each do |field|

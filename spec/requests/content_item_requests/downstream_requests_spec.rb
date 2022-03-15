@@ -34,7 +34,7 @@ RSpec.describe "Downstream requests", type: :request do
 
       let(:content_item_for_draft_content_store) do
         v2_content_item.except(:update_type).merge(
-          expanded_links: Presenters::Queries::ExpandedLinkSet.new(content_id: link_set.content_id, draft: true).links,
+          expanded_links: Queries::ExpandedLinkSet.new(content_id: link_set.content_id, draft: true).links,
         )
       end
 

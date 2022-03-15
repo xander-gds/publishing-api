@@ -6,7 +6,7 @@ module V2
         pagination_params,
       )
 
-      render json: Presenters::KeysetPaginationPresenter.new(
+      render json: KeysetPaginationPresenter.new(
         query, request.original_url
       ).present
     end

@@ -12,7 +12,7 @@ module V2
         search_in: query_params[:search_in],
       )
 
-      render json: Presenters::ResultsPresenter.new(results, pagination, request.original_url).present
+      render json: ResultsPresenter.new(results, pagination, request.original_url).present
     end
 
     def linkables

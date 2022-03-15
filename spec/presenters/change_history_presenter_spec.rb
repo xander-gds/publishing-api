@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::ChangeHistoryPresenter do
+RSpec.describe ChangeHistoryPresenter do
   let(:document) { create(:document) }
   let(:edition) do
     create(

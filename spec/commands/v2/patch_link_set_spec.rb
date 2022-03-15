@@ -35,7 +35,7 @@ RSpec.describe V2::PatchLinkSetCommand do
   before do
     stub_request(:put, %r{.*content-store.*/content/.*})
 
-    allow_any_instance_of(Presenters::EditionPresenter)
+    allow_any_instance_of(EditionPresenter)
       .to receive(:for_content_store)
       .and_return(expected_content_store_payload)
   end

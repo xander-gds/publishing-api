@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Presenters::DetailsPresenter do
+RSpec.describe DetailsPresenter do
   describe ".details" do
     let(:change_history_presenter) do
-      instance_double(Presenters::ChangeHistoryPresenter, change_history: [])
+      instance_double(ChangeHistoryPresenter, change_history: [])
     end
 
     subject do

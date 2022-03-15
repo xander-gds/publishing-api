@@ -100,7 +100,7 @@ private
 
     # When a document is only in draft it's expanded links can still be
     # accessed without drafts, so this is generates them as well.
-    live_links = Presenters::Queries::ExpandedLinkSet.by_content_id(
+    live_links = Queries::ExpandedLinkSet.by_content_id(
       content_id,
       locale: locale,
       with_drafts: false,

@@ -41,7 +41,7 @@ private
   end
 
   def content_presenter
-    @content_presenter ||= Presenters::EditionPresenter.new(edition, draft: draft)
+    @content_presenter ||= EditionPresenter.new(edition, draft: draft)
   end
 
   def redirect_presenter

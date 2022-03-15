@@ -38,7 +38,7 @@ private
     # the expanded links (since they are populated by edition and link set)
     link_set_version = LinkSet.find_by(content_id: content_id)&.stale_lock_version || 0
 
-    expanded_links = Presenters::Queries::ExpandedLinkSet.by_content_id(
+    expanded_links = Queries::ExpandedLinkSet.by_content_id(
       content_id,
       locale: locale,
       with_drafts: with_drafts,

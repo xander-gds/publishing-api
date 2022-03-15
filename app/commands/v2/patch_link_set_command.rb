@@ -33,7 +33,7 @@ module V2
 
       Action.create_patch_link_set_action(link_set, before_links, event)
 
-      presented = Presenters::LinkSetPresenterQuery.present(link_set)
+      presented = Queries::LinkSetPresenter.present(link_set)
       SuccessCommand.new(presented)
     end
 

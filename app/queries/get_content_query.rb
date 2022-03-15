@@ -7,7 +7,7 @@ module GetContentQuery
 
     editions = editions.where(user_facing_version: version) if version
 
-    response = Presenters::Queries::ContentItemPresenter.present_many(
+    response = Queries::ContentItemPresenter.present_many(
       editions,
       include_warnings: include_warnings,
       states: %i[draft published unpublished superseded],

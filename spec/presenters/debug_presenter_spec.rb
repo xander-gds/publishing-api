@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::DebugPresenter do
+RSpec.describe DebugPresenter do
   let(:document) { create(:document) }
 
   let!(:edition) do

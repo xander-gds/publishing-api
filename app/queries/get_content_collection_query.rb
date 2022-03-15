@@ -126,7 +126,7 @@ private
   end
 
   def presenter
-    Presenters::Queries::ContentItemPresenter
+    Queries::ContentItemPresenter
   end
 
   def raise_error(message)

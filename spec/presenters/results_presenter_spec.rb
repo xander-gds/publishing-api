@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Presenters::ResultsPresenter do
+RSpec.describe ResultsPresenter do
   let(:results) { double("results", total: 10, call: []) }
   let(:page) { 2 }
   let(:pagination) { double("pagination", pages: 10, page: page) }
