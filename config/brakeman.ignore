@@ -3,11 +3,11 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "1af88be2f659c27045759878aae0a405ed35ed9bc291a63edcec1c59a255b118",
+      "fingerprint": "228eabfb5e7fd4115ba3ec7ad08b97525a880cac3150a66e0436cfb144e58e75",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/presenters/queries/content_item_presenter.rb",
-      "line": 196,
+      "line": 195,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "scope.joins(\"LEFT JOIN LATERAL #{sql} ON TRUE\")",
       "render_path": null,
@@ -23,13 +23,13 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "d0811d2c0f8a29d7aca527231dab7c00fcc62bd08556ba114c0a934618ecc9d7",
+      "fingerprint": "aa4693dfbbb078c1965acd10fd0fdc3f83dc202e78e7a263c348492816e955db",
       "check_name": "SQL",
       "message": "Possible SQL injection",
-      "file": "app/queries/links.rb",
-      "line": 211,
+      "file": "app/queries/links_query.rb",
+      "line": 210,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Arel.sql(\"\\n        EXISTS(\\n          SELECT nested_links.id\\n          FROM links AS nested_links\\n          INNER JOIN link_sets AS nested_link_sets\\n          ON nested_link_sets.id = nested_links.link_set_id\\n          WHERE #{where}\\n          LIMIT 1\\n        )\\n      \")",
+      "code": "Arel.sql(\"\\n      EXISTS(\\n        SELECT nested_links.id\\n        FROM links AS nested_links\\n        INNER JOIN link_sets AS nested_link_sets\\n        ON nested_link_sets.id = nested_links.link_set_id\\n        WHERE #{where}\\n        LIMIT 1\\n      )\\n    \")",
       "render_path": null,
       "location": {
         "type": "method",
@@ -43,7 +43,7 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "d554c7ce14d7a110490194c93f9c5f416e2186ebd91a5e248e42637d7e831a46",
+      "fingerprint": "1e6f84812e202c64e8332efa6bd2367ffffca3e2405c9420e2b32e746d2be6dd",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/presenters/queries/content_item_presenter.rb",
@@ -63,10 +63,10 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "f738f92614ef15fa91784fb2cf4e05e404fbefeaa138d12f0b41122d872b3bca",
+      "fingerprint": "d524ac3f390be989842cb74399c6d10c3757c1b8385fc3b0762e10095200ef24",
       "check_name": "SQL",
       "message": "Possible SQL injection",
-      "file": "app/queries/get_edition_ids_with_fallbacks.rb",
+      "file": "app/queries/get_edition_ids_with_fallbacks_query.rb",
       "line": 42,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "Arel.sql(((\"CASE \\\"#{table}\\\".\\\"#{attribute}\\\" \" << values.map.with_index do\n \"WHEN '#{v}' THEN #{i}\"\n end.join(\" \")) << \" ELSE #{values.size} END\"))",
@@ -81,6 +81,6 @@
       "note": "The SQL is generated only with valid locales and edition states, not with arbitrary user input"
     }
   ],
-  "updated": "2021-06-10 09:17:56 +0000",
-  "brakeman_version": "5.0.4"
+  "updated": "2022-03-15 10:58:37 +0000",
+  "brakeman_version": "5.2.1"
 }
