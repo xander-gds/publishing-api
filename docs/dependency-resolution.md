@@ -54,7 +54,7 @@ The class responsible for determining which `content_id`s require updates is
 [link expansion rules][link-expansion-rules] to perform the inverse process of
 link expansion.
 
-The [Queries::ContentDependencies][content-dependencies] class is responsible
+The [ContentDependencies][contentQuery-dependencies] class is responsible
 for determining the locales of each `content_id`.
 
 ## Updating Content Store

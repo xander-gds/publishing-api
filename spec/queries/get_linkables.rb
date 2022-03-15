@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetLinkables do
+RSpec.describe GetLinkablesQuery do
   let(:document_type) { "contact" }
 
   describe "#call" do
@@ -26,7 +26,7 @@ RSpec.describe Queries::GetLinkables do
 
       it "returns an array of linkable presenters" do
         expect(linkables).to match_array([
-          an_instance_of(Queries::LinkablePresenter),
+          an_instance_of(LinkablePresenterQuery),
         ])
       end
 
@@ -59,9 +59,9 @@ RSpec.describe Queries::GetLinkables do
 
       it "returns an array of LinkablePresenter" do
         expect(linkables).to match_array([
-          an_instance_of(Queries::LinkablePresenter),
-          an_instance_of(Queries::LinkablePresenter),
-          an_instance_of(Queries::LinkablePresenter),
+          an_instance_of(LinkablePresenterQuery),
+          an_instance_of(LinkablePresenterQuery),
+          an_instance_of(LinkablePresenterQuery),
         ])
       end
 

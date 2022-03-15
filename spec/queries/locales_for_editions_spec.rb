@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::LocalesForEditions do
+RSpec.describe LocalesForEditionsQuery do
   def create_edition(
     content_id,
     type = :live_edition,

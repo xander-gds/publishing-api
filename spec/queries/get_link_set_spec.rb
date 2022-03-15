@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetLinkSet do
+RSpec.describe GetLinkSetQuery do
   let(:content_id) { SecureRandom.uuid }
 
   context "when the link set exists" do

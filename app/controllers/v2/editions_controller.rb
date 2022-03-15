@@ -1,8 +1,8 @@
 module V2
   class EditionsController < ApplicationController
     def index
-      query = Queries::KeysetPagination.new(
-        Queries::KeysetPagination::GetEditions.new(edition_params),
+      query = KeysetPaginationQuery.new(
+        KeysetPagination::GetEditionsQuery.new(edition_params),
         pagination_params,
       )
 

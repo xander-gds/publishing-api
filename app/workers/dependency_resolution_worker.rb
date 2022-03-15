@@ -68,7 +68,7 @@ private
   end
 
   def dependencies
-    Queries::ContentDependencies.new(
+    ContentDependenciesQuery.new(
       content_id: content_id,
       locale: locale,
       content_stores: content_stores,

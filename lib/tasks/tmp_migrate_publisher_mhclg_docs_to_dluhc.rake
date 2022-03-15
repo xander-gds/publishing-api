@@ -15,7 +15,7 @@ task migrate_publisher_mhclg_docs_to_dluhc: :environment do
   puts "#{mhclg_content_ids.count} MHCLG documents to be migrated to DLUHC\n"
 
   mhclg_content_ids.each do |content_id|
-    organisations = Queries::GetLinkSet.call(content_id)[:links][:organisations]
+    organisations = GetLinkSetQuery.call(content_id)[:links][:organisations]
     updated_orgs = organisations.map do |org|
       org == mhclg_content_id ? dluhc_content_id : org
     end

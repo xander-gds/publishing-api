@@ -3,7 +3,7 @@ module V2
     def index
       pagination = Pagination.new(query_params)
 
-      results = Queries::GetContentCollection.new(
+      results = GetContentCollectionQuery.new(
         document_types: document_types,
         fields: query_params[:fields],
         filters: filters,
@@ -16,13 +16,13 @@ module V2
     end
 
     def linkables
-      render json: Queries::GetLinkables.new(
+      render json: GetLinkablesQuery.new(
         document_type: query_params.fetch(:document_type),
       ).call
     end
 
     def show
-      render json: Queries::GetContent.call(
+      render json: GetContentQuery.call(
         path_params[:content_id],
         query_params[:locale],
         version: query_params[:version],

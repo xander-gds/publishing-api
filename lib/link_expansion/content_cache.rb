@@ -43,7 +43,7 @@ private
   def fetch_editions_from_database(content_ids)
     return [] if content_ids.blank?
 
-    edition_ids = Queries::GetEditionIdsWithFallbacks.call(
+    edition_ids = GetEditionIdsWithFallbacksQuery.call(
       content_ids,
       locale_fallback_order: locale_fallback_order,
       state_fallback_order: state_fallback_order,

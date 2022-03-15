@@ -1,17 +1,17 @@
 module V2
   class LinkSetsController < ApplicationController
     def get_links
-      render json: Queries::GetLinkSet.call(content_id)
+      render json: GetLinkSetQuery.call(content_id)
     end
 
     def bulk_links
       throw_payload_error if max_payload_size_exceeded?
-      json = Queries::GetBulkLinks.call(content_ids)
+      json = GetBulkLinksQuery.call(content_ids)
       render json: json
     end
 
     def expanded_links
-      json = Queries::GetExpandedLinks.call(
+      json = GetExpandedLinksQuery.call(
         content_id,
         locale,
         with_drafts: with_drafts?,
@@ -27,7 +27,7 @@ module V2
     end
 
     def get_linked
-      render json: Queries::GetLinked.new(
+      render json: GetLinkedQuery.new(
         content_id: content_id,
         link_type: params.fetch(:link_type),
         fields: params.fetch(:fields),

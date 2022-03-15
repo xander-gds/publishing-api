@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::BasePathForState do
+RSpec.describe BasePathForStateQuery do
   let(:conflict_base_path) { "/conflict" }
   let(:no_conflict_base_path) { "/no-conflict" }
 

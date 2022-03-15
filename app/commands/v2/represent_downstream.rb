@@ -7,11 +7,11 @@ module Commands
 
       def call(content_ids, with_drafts: true, queue: DownstreamQueue::LOW_QUEUE)
         if with_drafts
-          with_locales = Queries::LocalesForEditions.call(content_ids, %w[draft live])
+          with_locales = LocalesForEditionsQuery.call(content_ids, %w[draft live])
           with_locales.each { |(content_id, locale)| downstream_draft(content_id, locale, queue) }
         end
 
-        with_locales = Queries::LocalesForEditions.call(content_ids, %w[live])
+        with_locales = LocalesForEditionsQuery.call(content_ids, %w[live])
         with_locales.each { |(content_id, locale)| downstream_live(content_id, locale, queue) }
       end
 

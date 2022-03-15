@@ -55,7 +55,7 @@ private
     next_allowed_link_types_to = rules.dependency_resolution
       .next_allowed_direct_link_types(allowed_link_types, link_types_path, reverse_to_direct: true)
 
-    links = Queries::Links.from(
+    links = LinksQuery.from(
       content_id,
       allowed_link_types: rules.reverse_to_direct_link_types(allowed_link_types),
       parent_content_ids: parent_content_ids,
@@ -81,7 +81,7 @@ private
     next_allowed_link_types_to = rules.dependency_resolution
       .next_allowed_direct_link_types(allowed_link_types, link_types_path, reverse_to_direct: true)
 
-    Queries::Links.to(
+    LinksQuery.to(
       content_id,
       allowed_link_types: allowed_link_types,
       parent_content_ids: parent_content_ids,
@@ -91,14 +91,14 @@ private
   end
 
   def edition_links(content_id, locale, with_drafts)
-    to_links = Queries::EditionLinks.to(
+    to_links = EditionLinksQuery.to(
       content_id,
       locale: locale,
       with_drafts: with_drafts,
       allowed_link_types: nil,
     )
 
-    from_links = Queries::EditionLinks.from(
+    from_links = EditionLinksQuery.from(
       content_id,
       locale: locale,
       with_drafts: with_drafts,

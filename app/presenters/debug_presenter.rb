@@ -19,7 +19,7 @@ module Presenters
     end
 
     def latest_editions
-      @latest_editions ||= ::Queries::GetLatest.call(editions)
+      @latest_editions ||= ::GetLatestQuery.call(editions)
     end
 
     def latest_state_with_locale
@@ -31,7 +31,7 @@ module Presenters
     end
 
     def expanded_links
-      links = ::Queries::GetExpandedLinks.call(content_id, "en")
+      links = ::GetExpandedLinksQuery.call(content_id, "en")
       rows = []
       rows << [links[:content_id], "", "current"]
       links[:expanded_links].each do |type, sub_links|

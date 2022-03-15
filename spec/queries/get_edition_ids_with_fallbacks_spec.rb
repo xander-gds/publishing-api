@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetEditionIdsWithFallbacks do
+RSpec.describe GetEditionIdsWithFallbacksQuery do
   describe ".call" do
     let(:state_fallback_order) { %w[published] }
     let(:locale_fallback_order) { %w[en] }

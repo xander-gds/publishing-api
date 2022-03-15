@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetContentCollection do
+RSpec.describe GetContentCollectionQuery do
   context "document_type" do
     before do
       create(
@@ -30,7 +30,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns the requested fields for all editions" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         fields: %w[base_path],
       ).call).to match_array([
         hash_including("base_path" => "/a"),
@@ -41,7 +41,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns the editions matching the type" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path locale publication_state],
       ).call).to match_array([
@@ -51,7 +51,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns the editions matching all types when given an array" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: %w[topic mainstream_browse_page],
         fields: %w[base_path locale publication_state],
       ).call).to match_array([
@@ -76,7 +76,7 @@ RSpec.describe Queries::GetContentCollection do
       schema_name: "placeholder_topic",
     )
 
-    expect(Queries::GetContentCollection.new(
+    expect(GetContentCollectionQuery.new(
       document_types: "topic",
       fields: %w[base_path publication_state],
     ).call).to match_array([
@@ -99,7 +99,7 @@ RSpec.describe Queries::GetContentCollection do
       schema_name: "topic",
     )
 
-    expect(Queries::GetContentCollection.new(
+    expect(GetContentCollectionQuery.new(
       document_types: "topic",
       fields: %w[base_path publication_state],
     ).call).to match_array([
@@ -117,7 +117,7 @@ RSpec.describe Queries::GetContentCollection do
       unpublishing = Unpublishing.find_by(edition: edition)
 
       expect(
-        Queries::GetContentCollection.new(
+        GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[base_path publication_state unpublishing],
         ).call,
@@ -138,7 +138,7 @@ RSpec.describe Queries::GetContentCollection do
 
   context "when there's no items for the format" do
     it "returns an empty array" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path],
       ).call.to_a).to eq([])
@@ -148,7 +148,7 @@ RSpec.describe Queries::GetContentCollection do
   context "when unknown fields are requested" do
     it "raises an error" do
       expect {
-        Queries::GetContentCollection.new(
+        GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[not_existing],
         ).call
@@ -182,7 +182,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns items corresponding to the publishing_app parameter if present" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[publishing_app publication_state],
         filters: { publishing_app: "publisher" },
@@ -193,7 +193,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns items for all apps if publishing_app is not present" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[publishing_app publication_state],
       ).call).to match_array([
@@ -237,7 +237,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns the editions filtered by 'en' locale by default" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path publication_state],
       ).call).to match_array([
@@ -247,7 +247,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns the editions filtered by locale parameter" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path publication_state],
         filters: { locale: "ar" },
@@ -258,7 +258,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns all editions if the locale parameter is 'all'" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path publication_state],
         filters: { locale: "all" },
@@ -309,7 +309,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "filters editions by organisation" do
-      result = Queries::GetContentCollection.new(
+      result = GetContentCollectionQuery.new(
         filters: { links: { organisations: someorg_content_id } },
         fields: %w[base_path],
       ).call
@@ -321,7 +321,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "filters editions by organisation and other filters" do
-      result = Queries::GetContentCollection.new(
+      result = GetContentCollectionQuery.new(
         filters: {
           organisation: someorg_content_id,
           publishing_app: "specialist-publisher",
@@ -341,7 +341,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns all content if no filter is provided" do
-      results = Queries::GetContentCollection.new(
+      results = GetContentCollectionQuery.new(
         fields: %w[base_path],
       ).call
 
@@ -351,7 +351,7 @@ RSpec.describe Queries::GetContentCollection do
         hash_including("base_path" => "/unpublished"),
       ])
 
-      results = Queries::GetContentCollection.new(
+      results = GetContentCollectionQuery.new(
         filters: { states: [] }, fields: %w[base_path],
       ).call
 
@@ -363,7 +363,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns content filtered by the provided states" do
-      results = Queries::GetContentCollection.new(
+      results = GetContentCollectionQuery.new(
         fields: %w[base_path],
         filters: { states: %w[draft published] },
       ).call
@@ -395,7 +395,7 @@ RSpec.describe Queries::GetContentCollection do
       )
     end
     it "returns the details hash" do
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[details publication_state],
         filters: { publishing_app: "publisher" },
@@ -436,7 +436,7 @@ RSpec.describe Queries::GetContentCollection do
     let(:search_in) { nil }
 
     subject do
-      Queries::GetContentCollection.new(
+      GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path],
         search_query: search_query,
@@ -556,7 +556,7 @@ RSpec.describe Queries::GetContentCollection do
       end
 
       it "limits the results returned" do
-        editions = Queries::GetContentCollection.new(
+        editions = GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[publishing_app],
           pagination: Pagination.new(offset: 0, per_page: 3),
@@ -566,7 +566,7 @@ RSpec.describe Queries::GetContentCollection do
       end
 
       it "fetches results from a specified index" do
-        editions = Queries::GetContentCollection.new(
+        editions = GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[base_path],
           pagination: Pagination.new(offset: 1, per_page: 2),
@@ -576,7 +576,7 @@ RSpec.describe Queries::GetContentCollection do
       end
 
       it "when per_page is higher than results we only receive remaining editions" do
-        editions = Queries::GetContentCollection.new(
+        editions = GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[base_path],
           pagination: Pagination.new(offset: 3, per_page: 8),
@@ -587,7 +587,7 @@ RSpec.describe Queries::GetContentCollection do
       end
 
       it "returns all items when no pagination params are specified" do
-        editions = Queries::GetContentCollection.new(
+        editions = GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[publishing_app],
         ).call
@@ -606,7 +606,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns editions in default order" do
-      editions = Queries::GetContentCollection.new(
+      editions = GetContentCollectionQuery.new(
         fields: %w[public_updated_at],
       ).call.to_a
 
@@ -616,7 +616,7 @@ RSpec.describe Queries::GetContentCollection do
     end
 
     it "returns paginated editions in default order" do
-      editions = Queries::GetContentCollection.new(
+      editions = GetContentCollectionQuery.new(
         fields: %w[public_updated_at],
         pagination: Pagination.new(offset: 2, per_page: 4),
       ).call.to_a
@@ -631,7 +631,7 @@ RSpec.describe Queries::GetContentCollection do
       create(:edition, base_path: "/a", schema_name: "topic", document_type: "topic")
       create(:edition, base_path: "/b", schema_name: "topic", document_type: "topic")
 
-      expect(Queries::GetContentCollection.new(
+      expect(GetContentCollectionQuery.new(
         document_types: "topic",
         fields: %w[base_path locale publication_state],
       ).total).to eq(2)
@@ -659,12 +659,12 @@ RSpec.describe Queries::GetContentCollection do
       end
 
       it "returns the latest item only" do
-        expect(Queries::GetContentCollection.new(
+        expect(GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[base_path locale publication_state],
         ).total).to eq(1)
 
-        expect(Queries::GetContentCollection.new(
+        expect(GetContentCollectionQuery.new(
           document_types: "topic",
           fields: %w[base_path locale publication_state],
         ).call.first["publication_state"]).to eq("draft")

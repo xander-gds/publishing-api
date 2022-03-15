@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetLinked do
+RSpec.describe GetLinkedQuery do
   let(:content_id) { SecureRandom.uuid }
   let(:target_content_id) { SecureRandom.uuid }
   let(:another_target_content_id) { SecureRandom.uuid }
@@ -11,7 +11,7 @@ RSpec.describe Queries::GetLinked do
         non_existing_content_id = "39599c18-c7b8-4fd3-ae2d-a3c3cb310dd5"
 
         expect {
-          Queries::GetLinked.new(
+          GetLinkedQuery.new(
             content_id: non_existing_content_id,
             link_type: "organisations",
             fields: %w[title],
@@ -23,7 +23,7 @@ RSpec.describe Queries::GetLinked do
     context "no fields requested" do
       it "raises an error" do
         expect {
-          Queries::GetLinked.new(
+          GetLinkedQuery.new(
             content_id: target_content_id,
             link_type: "organisations",
             fields: [],
@@ -50,7 +50,7 @@ RSpec.describe Queries::GetLinked do
 
       it "returns no results when no content is linked to it" do
         expect(
-          Queries::GetLinked.new(
+          GetLinkedQuery.new(
             content_id: content_id,
             link_type: "organisations",
             fields: %w[title],
@@ -65,7 +65,7 @@ RSpec.describe Queries::GetLinked do
         end
 
         it "should return the linked item" do
-          expect(Queries::GetLinked.new(
+          expect(GetLinkedQuery.new(
             content_id: target_content_id,
             link_type: "organisations",
             fields: %w[title],
@@ -87,7 +87,7 @@ RSpec.describe Queries::GetLinked do
       context "but no edition links to it" do
         it "returns an empty array" do
           expect(
-            Queries::GetLinked.new(
+            GetLinkedQuery.new(
               content_id: target_content_id,
               link_type: "organisations",
               fields: %w[title],
@@ -99,7 +99,7 @@ RSpec.describe Queries::GetLinked do
       context "but requested fields are invalid" do
         it "raises an error" do
           expect {
-            Queries::GetLinked.new(
+            GetLinkedQuery.new(
               content_id: target_content_id,
               link_type: "organisations",
               fields: %w[not_existing],
@@ -154,7 +154,7 @@ RSpec.describe Queries::GetLinked do
         context "custom fields have been requested" do
           it "returns array of hashes, with requested fields" do
             expect(
-              Queries::GetLinked.new(
+              GetLinkedQuery.new(
                 content_id: target_content_id,
                 link_type: "organisations",
                 fields: %w[title base_path locale publication_state],
@@ -179,7 +179,7 @@ RSpec.describe Queries::GetLinked do
         context "when a link_type is specified" do
           it "filters the links by the specified link_type" do
             expect(
-              Queries::GetLinked.new(
+              GetLinkedQuery.new(
                 content_id: target_content_id,
                 link_type: "related_links",
                 fields: %w[base_path],
@@ -244,7 +244,7 @@ RSpec.describe Queries::GetLinked do
 
         it "returns array of hashes, with requested fields" do
           expect(
-            Queries::GetLinked.new(
+            GetLinkedQuery.new(
               content_id: another_target_content_id,
               link_type: "organisations",
               fields: %w[title publication_state],

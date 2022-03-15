@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetLinkChanges do
+RSpec.describe GetLinkChangesQuery do
   describe "#as_hash" do
     it "returns the link changes with the correct data" do
       create(:link_change, link_type: "topics")
 
-      result = Queries::GetLinkChanges.new(link_types: "topics").as_hash
+      result = GetLinkChangesQuery.new(link_types: "topics").as_hash
 
       change = result[:link_changes].first.deep_symbolize_keys
 
@@ -19,7 +19,7 @@ RSpec.describe Queries::GetLinkChanges do
       create(:edition, document: document, title: "Content Foo")
       create(:link_change, link_type: "topics", source_content_id: document.content_id)
 
-      result = Queries::GetLinkChanges.new(link_types: "topics").as_hash
+      result = GetLinkChangesQuery.new(link_types: "topics").as_hash
 
       change = result[:link_changes].first.deep_symbolize_keys
       expect(change[:source].keys).to match_array(%i[title base_path content_id])

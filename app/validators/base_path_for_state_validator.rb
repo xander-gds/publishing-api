@@ -8,7 +8,7 @@ class BasePathForStateValidator < ActiveModel::Validator
 private
 
   def check_conflict(record)
-    conflict = Queries::BasePathForState.conflict(record.id, record.state, record.base_path)
+    conflict = BasePathForStateQuery.conflict(record.id, record.state, record.base_path)
     if conflict
       record.errors.add(:base, error_message(record.base_path, conflict))
     end

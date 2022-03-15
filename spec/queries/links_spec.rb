@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::Links do
+RSpec.describe LinksQuery do
   include DependencyResolutionHelper
 
   let(:content_id) { SecureRandom.uuid }

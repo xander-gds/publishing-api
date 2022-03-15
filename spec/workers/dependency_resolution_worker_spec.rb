@@ -26,11 +26,11 @@ RSpec.describe DependencyResolutionWorker, :perform do
 
   before do
     stub_request(:put, %r{.*content-store.*/content/.*})
-    allow_any_instance_of(Queries::ContentDependencies).to receive(:call).and_return(dependencies)
+    allow_any_instance_of(ContentDependenciesQuery).to receive(:call).and_return(dependencies)
   end
 
   it "finds the edition dependees" do
-    expect(Queries::ContentDependencies).to receive(:new).with(
+    expect(ContentDependenciesQuery).to receive(:new).with(
       content_id: content_id,
       locale: locale,
       content_stores: %w[live],

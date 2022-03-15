@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::LiveEditionBlockingDraftEdition do
+RSpec.describe LiveEditionBlockingDraftEditionQuery do
   let(:content_id) { SecureRandom.uuid }
   let(:document) { create(:document, content_id: content_id) }
   let(:base_path) { "/vat-rates" }

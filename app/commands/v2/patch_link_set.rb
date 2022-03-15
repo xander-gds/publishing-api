@@ -77,12 +77,12 @@ module Commands
       def send_downstream(orphaned_content_ids, update_dependencies)
         return unless downstream
 
-        draft_locales = Queries::LocalesForEditions.call([content_id], %w[draft live])
+        draft_locales = LocalesForEditionsQuery.call([content_id], %w[draft live])
         draft_locales.each do |(content_id, locale)|
           downstream_draft(content_id, locale, orphaned_content_ids, update_dependencies)
         end
 
-        live_locales = Queries::LocalesForEditions.call([content_id], %w[live])
+        live_locales = LocalesForEditionsQuery.call([content_id], %w[live])
         live_locales.each do |(content_id, locale)|
           downstream_live(content_id, locale, orphaned_content_ids, update_dependencies)
         end
@@ -139,7 +139,7 @@ module Commands
       end
 
       def schema_name
-        @schema_name ||= Queries::GetLatest.call(
+        @schema_name ||= GetLatestQuery.call(
           Edition.with_document.where("documents.content_id": content_id),
         ).pick(:schema_name)
       end

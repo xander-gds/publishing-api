@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Queries::GetContent do
+RSpec.describe GetContentQuery do
   let(:content_id) { SecureRandom.uuid }
   let(:document) { create(:document, content_id: content_id) }
   let(:fr_document) { create(:document, content_id: content_id, locale: "fr") }

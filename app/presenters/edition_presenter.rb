@@ -73,7 +73,7 @@ module Presenters
     end
 
     def unexpanded_links
-      links = ::Queries::LinksForEditionIds.new([edition.id]).merged_links
+      links = ::LinksForEditionIdsQuery.new([edition.id]).merged_links
       links[edition.id].symbolize_keys
     end
 
