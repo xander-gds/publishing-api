@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::Republish do
+RSpec.describe V2::RepublishCommand do
   describe "call" do
     before do
       stub_request(:put, %r{.*content-store.*/content/.*})

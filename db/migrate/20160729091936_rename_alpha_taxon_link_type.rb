@@ -4,7 +4,7 @@ class RenameAlphaTaxonLinkType < ActiveRecord::Migration[4.2]
     link_sets = LinkSet.where(id: alpha_taxon_links.pluck(:link_set_id).uniq)
     link_sets.each do |link_set|
       target_content_ids = link_set.links.where(link_type: "alpha_taxons").pluck(:target_content_id)
-      Commands::V2::PatchLinkSet.call(
+      V2::PatchLinkSetCommand.call(
         {
           content_id: link_set.content_id,
           links: {

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::UnreservePath do
+RSpec.describe UnreservePathCommand do
   describe "#call" do
     context "when the path is owned by the app" do
       it "successfully removes the reservation" do

@@ -6,7 +6,7 @@ module Tasks
       content_ids.each_with_index do |content_id, i|
         stdout.puts "#{i}: #{content_id}"
 
-        Commands::V2::PatchLinkSet.call(
+        V2::PatchLinkSetCommand.call(
           content_id: content_id,
           links: {
             primary_publishing_organisation: [primary_publishing_organisation],

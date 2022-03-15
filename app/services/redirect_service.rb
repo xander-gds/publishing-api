@@ -22,7 +22,7 @@ class RedirectService
       publishing_app: payload[:publishing_app],
     ).for_redirect_helper(SecureRandom.uuid)
 
-    Commands::V2::PutContent.call(
+    V2::PutContentCommand.call(
       redirect_payload,
       callbacks: callbacks,
       nested: true,

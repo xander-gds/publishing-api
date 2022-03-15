@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Superseding editions" do
-  let(:put_content_command) { Commands::V2::PutContent }
-  let(:publish_command) { Commands::V2::Publish }
+  let(:put_content_command) { V2::PutContentCommand }
+  let(:publish_command) { V2::PublishCommand }
 
   let(:content_id) { SecureRandom.uuid }
 

@@ -37,7 +37,7 @@ module SubstitutionHelper
 private
 
   def discard_draft(blocking_edition, downstream, nested, callbacks)
-    Commands::V2::DiscardDraft.call(
+    V2::DiscardDraftCommand.call(
       {
         content_id: blocking_edition.document.content_id,
         locale: blocking_edition.document.locale,

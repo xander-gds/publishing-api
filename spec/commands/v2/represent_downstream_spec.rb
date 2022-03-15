@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::RepresentDownstream do
+RSpec.describe V2::RepresentDownstreamCommand do
   before do
     stub_request(:put, %r{.*content-store.*/content/.*})
   end

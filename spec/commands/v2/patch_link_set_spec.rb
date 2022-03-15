@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::PatchLinkSet do
+RSpec.describe V2::PatchLinkSetCommand do
   let(:expected_content_store_payload) { { base_path: "/vat-rates" } }
   let(:content_id) { SecureRandom.uuid }
   let(:topics) { 3.times.map { SecureRandom.uuid } }
@@ -86,7 +86,7 @@ RSpec.describe Commands::V2::PatchLinkSet do
     it "responds with a success object containing the newly created links in the same order as in the request" do
       result = described_class.call(payload)
 
-      expect(result).to be_a(Commands::Success)
+      expect(result).to be_a(SuccessCommand)
       expect(result.data).to eq(
         content_id: content_id,
         version: 1,
@@ -181,7 +181,7 @@ RSpec.describe Commands::V2::PatchLinkSet do
     it "responds with a success object containing the updated links in the same order as in the request" do
       result = described_class.call(payload)
 
-      expect(result).to be_a(Commands::Success)
+      expect(result).to be_a(SuccessCommand)
       expect(result.data).to eq(
         content_id: content_id,
         version: 2,

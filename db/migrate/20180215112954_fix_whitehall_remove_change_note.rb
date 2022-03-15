@@ -16,7 +16,7 @@ class FixWhitehallRemoveChangeNote < ActiveRecord::Migration[5.1]
       puts "The editions that need to be represented downstream are: #{content_ids}"
 
       if Rails.env.production?
-        Commands::V2::RepresentDownstream.new.call(content_ids)
+        V2::RepresentDownstreamCommand.new.call(content_ids)
       end
     end
   end

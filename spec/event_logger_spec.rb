@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe EventLogger do
-  let(:command_class) { Commands::PutPublishIntent }
+  let(:command_class) { PutPublishIntentCommand }
   let(:payload) { { stuff: "1234" } }
 
   before do
@@ -12,7 +12,7 @@ RSpec.describe EventLogger do
   it "records an event, given the name and payload" do
     EventLogger.log_command(command_class, payload)
     expect(Event.count).to eq(1)
-    expect(Event.first.action).to eq("PutPublishIntent")
+    expect(Event.first.action).to eq("PutPublishIntentCommand")
     expect(Event.first.payload).to eq(payload)
     expect(Event.first.request_id).to eq("09876-54321")
   end
@@ -71,11 +71,11 @@ RSpec.describe EventLogger do
   it "adds the content ID if present" do
     content_id = SecureRandom.uuid
 
-    EventLogger.log_command(Commands::V2::Publish, content_id: content_id)
+    EventLogger.log_command(V2::PublishCommand, content_id: content_id)
     expect(Event.count).to eq(1)
     expect(Event.last.content_id).to eq(content_id)
 
-    EventLogger.log_command(Commands::V2::Publish, {})
+    EventLogger.log_command(V2::PublishCommand, {})
     expect(Event.count).to eq(2)
     expect(Event.last.content_id).to be_nil
   end

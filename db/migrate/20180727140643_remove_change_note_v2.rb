@@ -27,7 +27,7 @@ class RemoveChangeNoteV2 < ActiveRecord::Migration[5.1]
         edition.update!(details: new_details)
 
         if Rails.env.production?
-          Commands::V2::RepresentDownstream.new.call(document.content_id)
+          V2::RepresentDownstreamCommand.new.call(document.content_id)
         end
       end
     end

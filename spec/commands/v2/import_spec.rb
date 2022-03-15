@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::Import, type: :request do
+RSpec.describe V2::ImportCommand, type: :request do
   describe "#call" do
     let(:content_id) { SecureRandom.uuid }
     let(:base_path) { "/bar" }

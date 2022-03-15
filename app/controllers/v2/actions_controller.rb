@@ -1,7 +1,7 @@
 module V2
   class ActionsController < ApplicationController
     def create
-      response = Commands::V2::PostAction.call(action_params)
+      response = V2::PostActionCommand.call(action_params)
       render status: response.code, json: response
     end
 

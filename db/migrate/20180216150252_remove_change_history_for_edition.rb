@@ -11,7 +11,7 @@ class RemoveChangeHistoryForEdition < ActiveRecord::Migration[5.1]
         edition.update!(details: edition_details)
 
         if Rails.env.production?
-          Commands::V2::RepresentDownstream.new.call(edition.content_id)
+          V2::RepresentDownstreamCommand.new.call(edition.content_id)
         end
       end
     rescue StandardError => e

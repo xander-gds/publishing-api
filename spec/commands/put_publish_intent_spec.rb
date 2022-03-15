@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::PutPublishIntent do
+RSpec.describe PutPublishIntentCommand do
   before do
     stub_request(:put, %r{.*content-store.*/publish-intent/.*})
   end
@@ -14,7 +14,7 @@ RSpec.describe Commands::PutPublishIntent do
 
   it "responds successfully" do
     result = described_class.call(payload)
-    expect(result).to be_a(Commands::Success)
+    expect(result).to be_a(SuccessCommand)
   end
 
   context "when the downstream flag is set to false" do

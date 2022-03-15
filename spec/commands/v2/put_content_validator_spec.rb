@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::PutContentValidator do
+RSpec.describe V2::PutContentValidatorCommand do
   let(:payload) { { publishing_app: "foo" } }
-  let(:command) { instance_double(Commands::V2::PutContent) }
+  let(:command) { instance_double(V2::PutContentCommand) }
   subject { described_class.new(payload, command) }
 
   describe "validate" do

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "pathless content" do
-  describe Commands::V2::PutContent do
+  describe V2::PutContentCommand do
     describe "call" do
       let(:content_id) { build(:document).content_id }
       let(:payload) do
@@ -162,7 +162,7 @@ RSpec.describe "pathless content" do
     end
   end
 
-  describe Commands::V2::Publish do
+  describe V2::PublishCommand do
     let(:pathless_edition) do
       create(
         :draft_edition,

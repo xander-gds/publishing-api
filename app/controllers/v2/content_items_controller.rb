@@ -31,34 +31,34 @@ module V2
     end
 
     def import
-      response = Commands::V2::Import.call(
+      response = V2::ImportCommand.call(
         edition.merge(locale: query_params[:locale]),
       )
       render status: response.code, json: response
     end
 
     def put_content
-      response = Commands::V2::PutContent.call(edition)
+      response = V2::PutContentCommand.call(edition)
       render status: response.code, json: response
     end
 
     def publish
-      response = Commands::V2::Publish.call(edition)
+      response = V2::PublishCommand.call(edition)
       render status: response.code, json: response
     end
 
     def republish
-      response = Commands::V2::Republish.call(edition)
+      response = V2::RepublishCommand.call(edition)
       render status: response.code, json: response
     end
 
     def unpublish
-      response = Commands::V2::Unpublish.call(edition)
+      response = V2::UnpublishCommand.call(edition)
       render status: response.code, json: response
     end
 
     def discard_draft
-      response = Commands::V2::DiscardDraft.call(edition)
+      response = V2::DiscardDraftCommand.call(edition)
       render status: response.code, json: response
     end
 

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::Unpublish do
+RSpec.describe V2::UnpublishCommand do
   before do
     Timecop.freeze(Time.zone.local(2017, 9, 1, 12, 0, 0))
   end

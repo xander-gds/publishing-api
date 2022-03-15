@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::PostAction do
+RSpec.describe V2::PostActionCommand do
   describe ".call" do
     let(:document) do
       create(
@@ -30,7 +30,7 @@ RSpec.describe Commands::V2::PostAction do
       end
 
       it "returns a Success object" do
-        expect(described_class.call(payload)).to be_a(Commands::Success)
+        expect(described_class.call(payload)).to be_a(SuccessCommand)
       end
 
       context "when a non existant content id is requested" do

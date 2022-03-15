@@ -62,7 +62,7 @@ module DataHygiene
     end
 
     def represent_downstream
-      Commands::V2::RepresentDownstream.new.call([content_id])
+      V2::RepresentDownstreamCommand.new.call([content_id])
     end
   end
 end

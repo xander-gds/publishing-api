@@ -47,7 +47,7 @@ RSpec.describe DataHygiene::ChangeNoteRemover do
       let(:represent_downstream) { double }
       before do
         allow(represent_downstream).to receive(:call)
-        allow(Commands::V2::RepresentDownstream)
+        allow(V2::RepresentDownstreamCommand)
           .to receive(:new).and_return(represent_downstream)
       end
 

@@ -20,7 +20,7 @@ task migrate_publisher_mhclg_docs_to_dluhc: :environment do
       org == mhclg_content_id ? dluhc_content_id : org
     end
 
-    Commands::V2::PatchLinkSet.call(
+    V2::PatchLinkSetCommand.call(
       content_id: content_id,
       links: { organisations: updated_orgs },
     )

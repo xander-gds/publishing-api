@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::DiscardDraft do
+RSpec.describe V2::DiscardDraftCommand do
   describe "call" do
     before do
       stub_request(:delete, %r{.*content-store.*/content/.*})

@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "Unpublishing editions" do
-  let(:put_content_command) { Commands::V2::PutContent }
-  let(:publish_command) { Commands::V2::Publish }
-  let(:unpublish_command) { Commands::V2::Unpublish }
+  let(:put_content_command) { V2::PutContentCommand }
+  let(:publish_command) { V2::PublishCommand }
+  let(:unpublish_command) { V2::UnpublishCommand }
 
   let(:content_id) { SecureRandom.uuid }
 

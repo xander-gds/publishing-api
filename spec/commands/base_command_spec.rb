@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.describe Commands::BaseCommand do
+RSpec.describe BaseCommand do
   let(:top_level_worker) { double(:top_level_worker, some_method: nil) }
   let(:nested_worker) { double(:nested_worker, some_method: nil) }
 
   let(:top_level_command) do
-    Class.new(Commands::BaseCommand) do
+    Class.new(BaseCommand) do
       def self.name
-        "Commands::TopLevelCommand"
+        "TopLevelCommandCommand"
       end
 
       def call
@@ -15,15 +15,15 @@ RSpec.describe Commands::BaseCommand do
           payload[:top_level_worker].some_method
         end
 
-        Commands::NestedCommand.call(payload, callbacks: callbacks, nested: true)
+        NestedCommandCommand.call(payload, callbacks: callbacks, nested: true)
       end
     end
   end
 
   let(:nested_command) do
-    Class.new(Commands::BaseCommand) do
+    Class.new(BaseCommand) do
       def self.name
-        "Commands::NestedCommand"
+        "NestedCommandCommand"
       end
 
       def call
@@ -35,9 +35,9 @@ RSpec.describe Commands::BaseCommand do
   end
 
   let(:slow_command) do
-    Class.new(Commands::BaseCommand) do
+    Class.new(BaseCommand) do
       def self.name
-        "Commands::SlowCommand"
+        "SlowCommand"
       end
 
       def call
@@ -47,7 +47,7 @@ RSpec.describe Commands::BaseCommand do
     end
   end
 
-  before { stub_const("Commands::NestedCommand", nested_command) }
+  before { stub_const("NestedCommandCommand", nested_command) }
 
   describe "callbacks for nested commands" do
     it "executes callbacks at the top level of the command tree" do
@@ -73,7 +73,7 @@ RSpec.describe Commands::BaseCommand do
   describe "timing" do
     it "sends a command's duration to statsd" do
       expect(PublishingAPI.service(:statsd)).to receive(:timing) do |name, time, sample_rate|
-        expect(name).to eq "Commands.SlowCommand"
+        expect(name).to eq "SlowCommand"
         expect(time).to within(100).of(1000)
         expect(sample_rate).to eq 1
       end

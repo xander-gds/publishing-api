@@ -22,7 +22,7 @@ module V2
     end
 
     def patch_links
-      response = Commands::V2::PatchLinkSet.call(links_params)
+      response = V2::PatchLinkSetCommand.call(links_params)
       render status: response.code, json: response
     end
 

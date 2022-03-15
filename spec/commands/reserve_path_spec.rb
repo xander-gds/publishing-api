@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::ReservePath do
+RSpec.describe ReservePathCommand do
   describe "call" do
     let(:payload) do
       { base_path: "/foo", publishing_app: "Foo" }
@@ -10,7 +10,7 @@ RSpec.describe Commands::ReservePath do
       it "successfully reserves the path" do
         expect(PathReservation).to receive(:reserve_base_path!)
           .with("/foo", "Foo", override_existing: false)
-        expect(described_class.call(payload)).to be_a Commands::Success
+        expect(described_class.call(payload)).to be_a SuccessCommand
       end
     end
 
@@ -29,7 +29,7 @@ RSpec.describe Commands::ReservePath do
       it "passes on the flag" do
         expect(PathReservation).to receive(:reserve_base_path!)
           .with("/foo", "Foo", override_existing: true)
-        expect(described_class.call(payload)).to be_a Commands::Success
+        expect(described_class.call(payload)).to be_a SuccessCommand
       end
     end
   end

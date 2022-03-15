@@ -48,7 +48,7 @@ namespace :data_hygiene do
     puts "Found #{about_pages.size} invalid draft Worldwide Organisation editions to remove"
     about_pages.each do |content_id, locale|
       puts "Removing draft edition #{content_id}"
-      Commands::V2::DiscardDraft.call(
+      V2::DiscardDraftCommand.call(
         {
           content_id: content_id,
           locale: locale,

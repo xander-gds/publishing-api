@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Commands::V2::PutContent do
+RSpec.describe V2::PutContentCommand do
   describe "call" do
     before do
       stub_request(:delete, %r{.*content-store.*/content/.*})
@@ -55,7 +55,7 @@ RSpec.describe Commands::V2::PutContent do
 
     it "validates the payload" do
       validator = double(:validator)
-      expect(Commands::V2::PutContentValidator).to receive(:new)
+      expect(V2::PutContentValidatorCommand).to receive(:new)
         .with(payload, instance_of(described_class))
         .and_return(validator)
       expect(validator).to receive(:validate)
