@@ -19,39 +19,18 @@
   "links": {
     "fatality_notices": [
       {
-        "content_id": "1a2b3c4d-7631-11e4-a3cb-005056011aef",
-        "title": "A fatality notice",
-        "locale": "en",
-        "api_path": "/api/content/government/fatalities/fatality-notice-one",
-        "base_path": "/government/fatalities/fatality-notice-one",
-        "document_type": "fatality_notice",
-        "public_updated_at": "2005-09-05T00:00:00Z",
-        "schema_name": "fatality_notice",
-        "withdrawn": false,
-        "details": {
-          "roll_call_introduction": "A fatality sadly occurred on 1 December"
-        },
-        "links": {},
-        "api_url": "https://www.gov.uk/api/content/government/fatalities/fatality-notice-one",
-        "web_url": "https://www.gov.uk/government/fatalities/fatality-notice-one"
+        "intro": "Two fatalities sadly occurred on 1 December",
+        "links": [
+          { "title": "A fatality notice for first person", "href": "/government/fatalities/fatality-title" },
+          { "title": "A fatality notice for second person", "href": "/government/fatalities/fatality-title" },
+        ],
       },
       {
-        "content_id": "5d6c7b8a-7631-11e4-a3cb-005056011aef",
-        "title": "A second fatality notice",
-        "locale": "en",
-        "api_path": "/api/content/government/fatalities/fatality-notice-two",
-        "base_path": "/government/fatalities/fatality-notice-two",
-        "document_type": "fatality_notice",
-        "public_updated_at": "2003-03-22T01:00:00Z",
-        "schema_name": "fatality_notice",
-        "withdrawn": false,
-        "details": {
-          "roll_call_introduction": "A fatality sadly occurred on 2 December"
-        },
-        "links": {},
-        "api_url": "https://www.gov.uk/api/content/government/fatalities/flight-lieutenant-kev-main",
-        "web_url": "https://www.gov.uk/government/fatalities/flight-lieutenant-kev-main"
-      }
+        "intro": "A fatality sadly occurred on 2 December",
+        "links": [
+          { "title": "A fatality notice", "href": "/government/fatalities/fatality-title--2" },
+        ],
+      },
     ],
     "primary_publishing_organisation": [
       {

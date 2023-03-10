@@ -302,6 +302,37 @@
     },
     description: "A list of URLs and titles for a brexit no deal notice.",
   },
+  fatality_notices: {
+    type: "array",
+    items: {
+      type: "object",
+      additionalProperties: false,
+      required: [
+        "intro",
+        "links",
+      ],
+      properties: {
+        intro: {
+          type: "string",
+        },
+        links: {
+          type: "array",
+          items: {
+            additionalProperties: false,
+            properties: {
+              title: {
+                type: "string",
+              },
+              href: {
+                type: "string",
+              },
+            },
+          },
+        },
+      },
+    },
+    description: "A list of fatality notices",
+  },
   ordered_featured_links: {
     type: "array",
     items: {
