@@ -52,6 +52,8 @@ module_function
     %i[historical_accounts person],
     %i[main_office contact],
     %i[home_page_offices contact],
+    %i[worldwide_organisation home_page_offices],
+    %i[worldwide_organisation main_office],
     %i[worldwide_organisation sponsoring_organisations],
     %i[worldwide_organisation world_locations],
   ].freeze
@@ -68,6 +70,7 @@ module_function
     person: :role_appointments,
     role: :role_appointments,
     ministerial: :ministers,
+    worldwide_organisations: :world_locations,
   }.freeze
 
   # These fields are required by the frontend_links definition in the
